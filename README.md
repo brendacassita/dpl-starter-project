@@ -2,7 +2,17 @@
 
 This project has devise_token_auth, react_router, etc setup.
 - uses rails v6, ruby 3.0.2
-- more info about the project
+- devise axios 
+- devise_token_auth 
+- react
+- react-router
+- axios
+- react bootstrap
+- styled components
+- proxy set to localhost:3001
+- gem "faker"
+- folder structure
+- custom hooks to provide Authentication data
 
 ## Getting starter (how to use)
 
@@ -11,8 +21,8 @@ This project has devise_token_auth, react_router, etc setup.
 2. cd 'project-name'
 
 ### rails stuff
-1. renaming our database in the config/database.yml file
-2. bundle
+1. renaming database in the config/database.yml file
+2. run bundle
 3. rails db:create db:migrate (db:seed if needed/applicable)
 4. rails s -p 3001
 
