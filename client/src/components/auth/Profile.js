@@ -24,7 +24,7 @@ function Profile() {
   // what is happening here?
 //   const auth = useContext(AuthContext)
  
-  const {  user } = useContext(AuthContext)
+  const {  user, setUser } = useContext(AuthContext)
 
   //   A file has been added or removed, receives a list of file items
   const handleUpdate = (files)=>{
@@ -34,11 +34,13 @@ function Profile() {
   const handleSubmit = async (e)=>{
       e.preventDefault()
       let data = new FormData()
+      data.append('fileYO', files[0].file)
+      data.append('name', name)
      // axios call
      try{
         console.log('trying to update with data:')
        let res = await axios.put('/api/users/update_image', data)
-       console.log(res)
+       setUser(res.data)
      } catch(err){
          alert('error occured updating')
      }
@@ -46,6 +48,9 @@ function Profile() {
   return (
     <div className="App">
       <h1>Profile Page</h1>
+      <p>image</p>
+      {user.image && <img src={user.image} width={300} />}
+      {!user.image && <p>no image</p>}
       <p>{JSON.stringify(user)}</p>
       <form onSubmit={handleSubmit} style={{width:'600px',margin:'auto', padding:'20px', border:'1px solid'}}>
         <h1>Update User</h1>
