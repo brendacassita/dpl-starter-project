@@ -27,6 +27,7 @@ const Navbar = () => {
         <>
           {/* <Link className="Nav-link" to="/home">Home Protected</Link> */}
           {/* <Badge onClick={auth.handleLogout }>Logout</Badge> */}
+          <Link to='/profile'>Profile</Link>
         </>
       );
     }
