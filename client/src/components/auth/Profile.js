@@ -22,11 +22,21 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 function Profile() {
   const [files, setFiles] = useState([]);
   const [name, setName] = useState('');
+  const [showUpload, setShowUpload] = useState(false)
+
   // what is happening here?
 //   const auth = useContext(AuthContext)
  
   const {  user, setUser } = useContext(AuthContext)
 
+
+  const upload = () =>{
+    if(showUpload){
+      return ////// ??????  how to return whole form upload box
+    }else{
+      return 
+    }
+  }
   //   A file has been added or removed, receives a list of file items
   const handleUpdate = (files)=>{
       setFiles(files)      
@@ -69,6 +79,8 @@ function Profile() {
             labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
         />
         <Button type = 'submit'>update user</Button>
+        <Button type = 'button' onClick={()=>setShowUpload(!showUpload)}>Click to update profile image</Button>
+
       </form>
     </div>
   );
