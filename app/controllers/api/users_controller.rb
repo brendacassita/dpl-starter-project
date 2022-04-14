@@ -19,7 +19,7 @@ class Api::UsersController < ApplicationController
               current_user.image = cloud_image['secure_url']
           rescue => e
               # image did not save to cloudinary
-              render json: {errors:e}, status: 422
+              render json: {errors:e}, status: 401
               # exit function for now
               return
           end

@@ -1,4 +1,6 @@
+
 import { useContext } from "react";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
@@ -10,7 +12,7 @@ const Navbar = () => {
   //    if(!user) => login/register
   const renderRightNav = () => {
     if (auth.user) {
-      return <button variant="primary" size="sm" onClick={auth.handleLogout}>Logout</button>;
+      return <Button variant="primary" size="sm" onClick={auth.handleLogout}>Logout</Button>;
     }
     return (
       <>
@@ -36,7 +38,7 @@ const Navbar = () => {
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       <div>
-      {renderLeft()}
+      
         <Link className="Nav-link" to="/">Home</Link>
         {renderLeft()}
 
