@@ -50,7 +50,7 @@ function Profile() {
   return (
     <div className="App">
       <h1>Profile Page</h1>
-      <p>image: </p>
+      
       {user.image && <img src={user.image} width={300} />}
       {!user.image && <p>no image</p>}
       < br/>
