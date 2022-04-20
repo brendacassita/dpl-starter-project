@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import Button from "react-bootstrap/esm/Button"
 import { AuthContext } from "../../providers/AuthProvider"
+import { Link } from "react-router-dom"
 
 
 
@@ -8,6 +9,7 @@ import { AuthContext } from "../../providers/AuthProvider"
 const Login = ()=>{
     const [email, setEmail] = useState('test1@test.com')
     const [password, setPassword] = useState('123456')
+    const [loading, setLoading] = useState(false);
     
     // const [confirmPassword, setConfirmPassword] = useState('') // not need but nice for UX
 
@@ -32,6 +34,16 @@ const Login = ()=>{
                 <p>Password: </p>
                 <input value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 <Button variant="primary" size="sm" onClick={handleSubmit}>Login</Button>
+                {!loading &&
+                <>
+                    <div className="alt-text">
+                        <br/>
+                        <p>Already have an account? {' '} {' '}
+                    
+                    <Link to= '/register'>Register Here</Link></p>
+                    </div>
+                </>
+                }
             </form>
         
         </div>

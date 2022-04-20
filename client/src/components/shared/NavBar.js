@@ -31,6 +31,8 @@ const Navbar = () => {
           {/* <Badge onClick={auth.handleLogout }>Logout</Badge> */}
           <Link to='/profile'>Profile</Link>
           <Link to='/edit_profile'> Edit Profile</Link>
+          <Link to='/braintree'> Braintree</Link>
+
 
         </>
       );

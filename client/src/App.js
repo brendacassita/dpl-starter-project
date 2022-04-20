@@ -11,6 +11,7 @@ import FetchUser from './components/shared/FetchUser';
 import ProtectedRoute from './components/shared/ProtectedRoute';
 import Profile from './components/auth/Profile';
 import EditProfile from './components/auth/EditProfile';
+import BraintreeDemo from './components/shared/BraintreeDemo';
 
 //Fetch User: going to see if the user is logged in(valid user?)
 //before we render our routes, it's going to check for user.
@@ -32,6 +33,7 @@ function App() {
             <Route path='/login' element={<Login />}/>
             <Route path='/register' element={<Register />}/>
             <Route path='/' element={<Home />}/>
+            <Route path='/braintree' element={<BraintreeDemo/>}/>
            
                 {/* protected in routes inside of here you need to logged in*/}
                 {/* else you go to login page*/}

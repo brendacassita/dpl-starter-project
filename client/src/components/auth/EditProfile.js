@@ -21,13 +21,15 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 function Profile() {
   const [files, setFiles] = useState([]);
-  const [name, setName] = useState('');
+    const {  user, setUser } = useContext(AuthContext)
+    const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email)
   const [showUpload, setShowUpload] = useState(false)
 
   // what is happening here?
 //   const auth = useContext(AuthContext)
  
-  const {  user, setUser } = useContext(AuthContext)
+
 
 
   const upload = () =>{
@@ -42,8 +44,7 @@ function Profile() {
       setFiles(files)      
   }
 
-  const handleSubmit = async (e)=>{
-      e.preventDefault()
+  const handleImage = async (e)=>{
       let data = new FormData()
       data.append('fileYO', files[0].file)
       data.append('name', name)
@@ -57,21 +58,48 @@ function Profile() {
          alert('error occured updating')
      }
   }
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+   try{
+      console.log('trying to update with data:')
+     let res = await axios.put(`/api/users/${user.id}`, {name, email, })
+   } catch(err){
+       alert('error occured updating user info')
+   } finally {
+     console.log(files)
+     if(!files[0]){
+       console.log('ffff')
+       return 
+     }
+     handleImage()
+   }
+}
+
+
+
   return (
     <div className="App">
+      <form onSubmit={handleSubmit} style={{width:'900px',margin:'auto', padding:'20px', border:'1px solid'}}>
       <h1>Edit Profile Page</h1>
       
       {user.image && <img src={user.image} width={300} />}
       {!user.image && <p>no image</p>}
       < br/>
-      < br/>
+        {user.name} <br/>
+        {user.email}
+        < br/>
+        < br/>
 
       {/* <p>{JSON.stringify(user)}</p> */}
-      <form onSubmit={handleSubmit} style={{width:'600px',margin:'auto', padding:'20px', border:'1px solid'}}>
-        <h1>Update User</h1>
-        <p>name:</p>
+      
+        
+        <p>Name:</p>
         <input value={name} onChange={(e)=> setName(e.target.value)} />        
-        <p>image:</p>
+        <p>Email:</p><input value={email} onChange={(e)=> setEmail(e.target.value)} /> 
+        <br/>
+        <br/>
+
         {showUpload && <FilePond
             files={files}
             allowMultiple={false}

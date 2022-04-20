@@ -1,6 +1,14 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def update
+    if(current_user.update(user_params))
+        render json: current_user
+    else
+        render json: {errors: current_user.errors.full_messages}, status: 422
+    end
+  end
+
   
   def update_image
    
@@ -33,5 +41,11 @@ class Api::UsersController < ApplicationController
       else
           render json: {errors:current_user.errors.full_messages}, status: 422
       end
+  end
+
+  private 
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :image)
   end
 end
